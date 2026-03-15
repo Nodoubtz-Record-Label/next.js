@@ -224,15 +224,15 @@ export async function middleware(request) {
 
       if (request.nextUrl.pathname === '/url/relative-request') {
         await fetch(new Request('/urls-b'))
-        return Response.next()
+        return NextResponse.next()
       }
 
       if (request.nextUrl.pathname === '/url/relative-redirect') {
-        return Response.redirect('/urls-b')
+        return NextResponse.redirect(new URL('/urls-b', request.url))
       }
 
       if (request.nextUrl.pathname === '/url/relative-next-redirect') {
-        return NextResponse.redirect('/urls-b')
+        return NextResponse.redirect(new URL('/urls-b', request.url))
       }
 
       if (request.nextUrl.pathname === '/url/relative-next-rewrite') {
@@ -284,7 +284,7 @@ function withLocalIp(url) {
 }
 
 function isValidUrl(url) {
-  const allowedHostnames = ['example.com', '127.0.0.1'];
+  const allowedHostnames = ['example.com', 'example.vercel.sh', '127.0.0.1', 'localhost'];
   const allowedSchemes = ['http', 'https'];
   const hostname = url.hostname;
   const pathname = url.pathname;
