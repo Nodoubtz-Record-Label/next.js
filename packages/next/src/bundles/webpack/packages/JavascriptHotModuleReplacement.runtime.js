@@ -452,7 +452,9 @@ module.exports = function () {
 					currentUpdateChunks &&
 					$hasOwnProperty$(currentUpdateChunks, chunkId) &&
 					!currentUpdateChunks[chunkId]
-				) {
+					if (typeof $loadUpdateChunk$ === "function") {
+						promises.push($loadUpdateChunk$(chunkId));
+					}
 					promises.push($loadUpdateChunk$(chunkId));
 					currentUpdateChunks[chunkId] = true;
 				}
