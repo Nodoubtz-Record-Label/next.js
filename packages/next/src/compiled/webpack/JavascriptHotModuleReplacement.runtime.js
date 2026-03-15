@@ -14,6 +14,8 @@ var $ensureChunkHandlers$ = undefined;
 var $hasOwnProperty$ = function (obj, prop) {
 	return Object.prototype.hasOwnProperty.call(obj, prop);
 };
+	return Object.prototype.hasOwnProperty.call(obj, prop);
+};
 	Object.prototype.hasOwnProperty.call.bind(
 		Object.prototype.hasOwnProperty
 	);
