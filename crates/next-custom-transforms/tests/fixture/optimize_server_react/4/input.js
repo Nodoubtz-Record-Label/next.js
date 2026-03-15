@@ -1,4 +1,4 @@
-const useEffect = 1
+import { useEffect } from 'react'
 import { useLayoutEffect, useMemo } from 'react'
 const React = 2
 
