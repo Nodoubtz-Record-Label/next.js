@@ -16,6 +16,8 @@ var $hasOwnProperty$ = function (obj, prop) {
 };
 	return Object.prototype.hasOwnProperty.call(obj, prop);
 };
+	return Object.prototype.hasOwnProperty.call(obj, prop);
+};
 	Object.prototype.hasOwnProperty
 );
 	return Object.prototype.hasOwnProperty.call(obj, prop);
