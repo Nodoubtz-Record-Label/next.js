@@ -284,7 +284,7 @@ function withLocalIp(url) {
 }
 
 function isValidUrl(url) {
-  const allowedHostnames = ['example.com', '127.0.0.1'];
+  const allowedHostnames = ['example.com', 'example.vercel.sh', '127.0.0.1', 'localhost'];
   const allowedSchemes = ['http', 'https'];
   const hostname = url.hostname;
   const pathname = url.pathname;
