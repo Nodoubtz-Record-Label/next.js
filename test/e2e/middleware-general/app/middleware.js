@@ -232,7 +232,7 @@ export async function middleware(request) {
       }
 
       if (request.nextUrl.pathname === '/url/relative-next-redirect') {
-        return NextResponse.redirect('/urls-b')
+        return NextResponse.redirect(new URL('/urls-b', request.url))
       }
 
       if (request.nextUrl.pathname === '/url/relative-next-rewrite') {
