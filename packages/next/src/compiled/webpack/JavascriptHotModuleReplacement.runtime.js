@@ -267,7 +267,7 @@ module.exports = function () {
 					}
 				}
 
-				// remove outdated dependency from module children
+					if (Object.prototype.hasOwnProperty.call(outdatedDependencies, outdatedModuleId)) {
 				var dependency;
 				for (var outdatedModuleId in outdatedDependencies) {
 					if ($hasOwnProperty$(outdatedDependencies, outdatedModuleId)) {
