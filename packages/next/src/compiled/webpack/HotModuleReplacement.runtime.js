@@ -117,7 +117,14 @@ module.exports = function () {
 			_requireSelf: function () {
 				currentParents = me.parents.slice();
 				currentChildModule = _main ? undefined : moduleId;
-				__webpack_require__(moduleId);
+				if (typeof __webpack_require__ === "function") {
+					__webpack_require__(moduleId);
+				} else {
+					throw new Error(
+						"__webpack_require__ is not initialized or not a function when calling _requireSelf for module " +
+							moduleId
+					);
+				}
 			},
 
 			// Module API
