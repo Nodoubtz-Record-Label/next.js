@@ -117,7 +117,14 @@ module.exports = function () {
 			_requireSelf: function () {
 				currentParents = me.parents.slice();
 				currentChildModule = _main ? undefined : moduleId;
-				__webpack_require__(moduleId);
+				if (typeof __webpack_require__ === "function") {
+					__webpack_require__(moduleId);
+				} else {
+					console.error(
+						"[HMR] __webpack_require__ is not available when calling hot._requireSelf for module " +
+							moduleId
+					);
+				}
 			},
 
 			// Module API
