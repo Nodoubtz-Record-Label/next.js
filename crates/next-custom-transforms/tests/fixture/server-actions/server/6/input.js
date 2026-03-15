@@ -28,7 +28,7 @@ function x() {
 }
 
 export function y(p, [p1, { p2 }], ...p3) {
-  const f2 = 1
+  const f2Local = 1
   const f11 = 1
   const f19 = 1
 
