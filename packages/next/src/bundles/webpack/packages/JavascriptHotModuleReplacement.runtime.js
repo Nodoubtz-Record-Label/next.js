@@ -11,7 +11,8 @@ var $loadUpdateChunk$ = undefined;
 var $moduleCache$ = undefined;
 var $moduleFactories$ = undefined;
 var $ensureChunkHandlers$ = undefined;
-var $hasOwnProperty$ = undefined;
+var $hasOwnProperty$ =
+	Object.prototype.hasOwnProperty.call.bind(Object.prototype.hasOwnProperty);
 var $hmrModuleData$ = undefined;
 var $hmrDownloadUpdateHandlers$ = undefined;
 var $hmrInvalidateModuleHandlers$ = undefined;
