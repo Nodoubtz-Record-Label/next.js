@@ -224,7 +224,7 @@ export async function middleware(request) {
 
       if (request.nextUrl.pathname === '/url/relative-request') {
         await fetch(new Request('/urls-b'))
-        return Response.next()
+        return NextResponse.next()
       }
 
       if (request.nextUrl.pathname === '/url/relative-redirect') {
