@@ -1,5 +1,4 @@
-const useEffect = 1;
-import { useLayoutEffect, useMemo } from 'react';
+import { useEffect, useLayoutEffect, useMemo } from 'react';
 const React = 2;
 export default function App() {
     useEffect(()=>{
