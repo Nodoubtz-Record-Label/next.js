@@ -11,7 +11,9 @@ var $loadUpdateChunk$ = undefined;
 var $moduleCache$ = undefined;
 var $moduleFactories$ = undefined;
 var $ensureChunkHandlers$ = undefined;
-var $hasOwnProperty$ = function (obj, prop) {
+var $hasOwnProperty$ = Object.prototype.hasOwnProperty.call.bind(
+	Object.prototype.hasOwnProperty
+);
 	return Object.prototype.hasOwnProperty.call(obj, prop);
 };
 	return Object.prototype.hasOwnProperty.call(obj, prop);
