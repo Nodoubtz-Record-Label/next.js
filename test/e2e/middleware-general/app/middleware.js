@@ -195,7 +195,8 @@ export async function middleware(request) {
     if (!isValidUrl(url)) {
       return serializeError(new Error('Invalid URL'))
     }
-    const res = await fetch(url)
+    const subrequestUrl = new URL(url.pathname + url.search, request.url)
+    const res = await fetch(subrequestUrl.toString())
     res.headers.set('x-dynamic-path', 'true')
     return res
   }
