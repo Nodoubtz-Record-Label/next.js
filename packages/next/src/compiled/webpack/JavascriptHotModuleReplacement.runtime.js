@@ -439,8 +439,12 @@ module.exports = function () {
 			return obj;
 		}, {});
 		currentUpdateRuntime = [];
-		chunkIds.forEach(function (chunkId) {
-			if (
+				if (typeof $loadUpdateChunk$ === "function") {
+					promises.push($loadUpdateChunk$(chunkId, updatedModulesList));
+					currentUpdateChunks[chunkId] = true;
+				} else {
+					currentUpdateChunks[chunkId] = false;
+				}
 				$hasOwnProperty$($installedChunks$, chunkId) &&
 				$installedChunks$[chunkId] !== undefined
 			) {
@@ -452,8 +456,10 @@ module.exports = function () {
 		});
 		if ($ensureChunkHandlers$) {
 			$ensureChunkHandlers$.$key$Hmr = function (chunkId, promises) {
-				if (
-					currentUpdateChunks &&
+					if (typeof $loadUpdateChunk$ === "function") {
+						promises.push($loadUpdateChunk$(chunkId));
+						currentUpdateChunks[chunkId] = true;
+					}
 					$hasOwnProperty$(currentUpdateChunks, chunkId) &&
 					!currentUpdateChunks[chunkId]
 				) {
