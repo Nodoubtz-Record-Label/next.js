@@ -197,15 +197,15 @@ module.exports = function () {
 			// Management API
 			check: hotCheck,
 			apply: hotApply,
-			status: function (l) {
-				if (!l) return currentStatus;
-				registeredStatusHandlers.push(l);
+			status: function (listener) {
+				if (!listener) return currentStatus;
+				registeredStatusHandlers.push(listener);
 			},
-			addStatusHandler: function (l) {
-				registeredStatusHandlers.push(l);
+			addStatusHandler: function (listener) {
+				registeredStatusHandlers.push(listener);
 			},
-			removeStatusHandler: function (l) {
-				var idx = registeredStatusHandlers.indexOf(l);
+			removeStatusHandler: function (listener) {
+				var idx = registeredStatusHandlers.indexOf(listener);
 				if (idx >= 0) registeredStatusHandlers.splice(idx, 1);
 			},
 
