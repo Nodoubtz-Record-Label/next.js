@@ -180,7 +180,7 @@ module.exports = function () {
 						doDispose = true;
 						break;
 					default:
-						throw new Error("Unexception type " + result.type);
+						throw new Error("Unexpected type " + result.type);
 				}
 				if (abortError) {
 					return {
