@@ -10,7 +10,7 @@ var $interceptModuleExecution$ = undefined;
 var $moduleCache$ = undefined;
 // eslint-disable-next-line no-unused-vars
 var $hmrModuleData$ = undefined;
-/** @type {() => Promise}  */
+/** @type {() => Promise<any>}  */
 var $hmrDownloadManifest$ = undefined;
 var $hmrDownloadUpdateHandlers$ = undefined;
 var $hmrInvalidateModuleHandlers$ = undefined;
