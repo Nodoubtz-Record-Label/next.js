@@ -1,8 +1,8 @@
 import f, { f1, f2 } from 'foo'
 
 const f3 = 1
-var f4
-let f5
+var f4 = null
+let f5 = null
 
 const [
   f6,
