@@ -18,7 +18,7 @@ var __webpack_require__ = undefined;
 
 module.exports = function () {
 	var currentModuleData = {};
-	var installedModules = $moduleCache$;
+	var installedModules = $moduleCache$ || {};
 
 	// module and require creation
 	var currentChildModule;
