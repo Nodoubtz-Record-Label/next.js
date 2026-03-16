@@ -443,6 +443,13 @@ module.exports = function () {
 		currentUpdate = removedModules.reduce(function (obj, key) {
 			obj[key] = false;
 			return obj;
+		}, {});
+
+		chunkIds.forEach(function (chunkId) {
+			if (
+				$hasOwnProperty$($installedChunks$, chunkId) &&
+				$installedChunks$[chunkId] !== undefined
+			) {
 				if (typeof $loadUpdateChunk$ === "function") {
 					promises.push($loadUpdateChunk$(chunkId, updatedModulesList));
 					currentUpdateChunks[chunkId] = true;
@@ -454,39 +461,11 @@ module.exports = function () {
 					);
 					currentUpdateChunks[chunkId] = false;
 				}
-		chunkIds.forEach(function (chunkId) {
-			if (
-				$hasOwnProperty$($installedChunks$, chunkId) &&
-				$installedChunks$[chunkId] !== undefined
-			) {
-				promises.push($loadUpdateChunk$(chunkId, updatedModulesList));
-				currentUpdateChunks[chunkId] = true;
 			} else {
 				currentUpdateChunks[chunkId] = false;
 			}
 		});
-					if (typeof $loadUpdateChunk$ === "function") {
-						promises.push($loadUpdateChunk$(chunkId));
-						currentUpdateChunks[chunkId] = true;
-					} else {
-						promises.push(
-							Promise.reject(
-								new Error("HMR update chunk loader is not available")
-							)
-						);
-						currentUpdateChunks[chunkId] = false;
-					}
-				if (
-					currentUpdateChunks &&
-					$hasOwnProperty$(currentUpdateChunks, chunkId) &&
-					!currentUpdateChunks[chunkId]
-					if (typeof $loadUpdateChunk$ === "function") {
-						promises.push($loadUpdateChunk$(chunkId));
-					}
-					promises.push($loadUpdateChunk$(chunkId));
-					currentUpdateChunks[chunkId] = true;
-				}
-			};
-		}
 	};
+};
+
 };
