@@ -52,10 +52,10 @@ module.exports = function () {
 	$hmrInvalidateModuleHandlers$ = {};
 
 	function createRequire(require, moduleId) {
-		var me = installedModules[moduleId];
-		if (!me) return require;
+		var currentModule = installedModules[moduleId];
+		if (!currentModule) return require;
 		var fn = function (request) {
-			if (me.hot.active) {
+			if (currentModule.hot.active) {
 				if (installedModules[request]) {
 					var parents = installedModules[request].parents;
 					if (parents.indexOf(moduleId) === -1) {
@@ -65,8 +65,8 @@ module.exports = function () {
 					currentParents = [moduleId];
 					currentChildModule = request;
 				}
-				if (me.children.indexOf(request) === -1) {
-					me.children.push(request);
+				if (currentModule.children.indexOf(request) === -1) {
+					currentModule.children.push(request);
 				}
 			} else {
 				console.warn(
