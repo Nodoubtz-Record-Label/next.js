@@ -102,7 +102,7 @@ module.exports = function () {
 		return fn;
 	}
 
-	function createModuleHotObject(moduleId, me) {
+	function createModuleHotObject(moduleId, moduleInstance) {
 		var _main = currentChildModule !== moduleId;
 		var hot = {
 			// private stuff
@@ -115,7 +115,7 @@ module.exports = function () {
 			_disposeHandlers: [],
 			_main: _main,
 			_requireSelf: function () {
-				currentParents = me.parents.slice();
+				currentParents = moduleInstance.parents.slice();
 				currentChildModule = _main ? undefined : moduleId;
 				if (typeof __webpack_require__ === "function") {
 					__webpack_require__(moduleId);
