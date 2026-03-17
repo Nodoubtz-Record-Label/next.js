@@ -12,7 +12,10 @@ export default function Page() {
       id="click-me"
       onClick={(e) => {
         e.preventDefault()
-        router[method](invalidLink)
+        const allowedMethods = ['push', 'replace', 'prefetch']
+        if (allowedMethods.includes(method) && typeof router[method] === 'function') {
+          router[method](invalidLink)
+        }
       }}
     >
       invalid link :o
