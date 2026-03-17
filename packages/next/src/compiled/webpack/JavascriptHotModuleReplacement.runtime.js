@@ -14,24 +14,7 @@ var $ensureChunkHandlers$ = undefined;
 var $hasOwnProperty$ = Object.prototype.hasOwnProperty.call.bind(
 	Object.prototype.hasOwnProperty
 );
-	return Object.prototype.hasOwnProperty.call(obj, prop);
-};
-	return Object.prototype.hasOwnProperty.call(obj, prop);
-};
-	return Object.prototype.hasOwnProperty.call(obj, prop);
-};
-	return Object.prototype.hasOwnProperty.call(obj, prop);
-};
-	Object.prototype.hasOwnProperty.call.bind(
-		Object.prototype.hasOwnProperty
-	);
 var $hmrModuleData$ = undefined;
-	// Ensure $hasOwnProperty$ is a callable function before use
-	if (!$hasOwnProperty$) {
-		$hasOwnProperty$ = function (obj, prop) {
-			return Object.prototype.hasOwnProperty.call(obj, prop);
-		};
-	}
 var $hmrDownloadUpdateHandlers$ = undefined;
 var $hmrInvalidateModuleHandlers$ = undefined;
 var __webpack_require__ = undefined;
