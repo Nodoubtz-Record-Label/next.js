@@ -16,6 +16,11 @@ export async function GET(req: Request) {
   if (normalizedPath.includes("..") || normalizedPath.includes("\\")) {
     return new Response("Bad Request", { status: 400 });
   }
+  // Allow only simple, safe image-like paths (no queries, fragments, or dangerous characters).
+  const IMAGE_PATH_REGEX = /^\/[a-zA-Z0-9/_\-\.]+$/;
+  if (!IMAGE_PATH_REGEX.test(normalizedPath)) {
+    return new Response("Bad Request", { status: 400 });
+  }
   const res = await fetch(new URL(normalizedPath, SOURCE_IMAGE_ORIGIN));
   const { status, headers, body } = res;
   return new Response(body, { status, headers });
