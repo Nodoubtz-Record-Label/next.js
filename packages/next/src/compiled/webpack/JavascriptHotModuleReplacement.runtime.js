@@ -453,12 +453,9 @@ module.exports = function () {
 			return obj;
 		}, {});
 		currentUpdateRuntime = [];
-				if (typeof $loadUpdateChunk$ === "function") {
-					promises.push($loadUpdateChunk$(chunkId, updatedModulesList));
-					currentUpdateChunks[chunkId] = true;
-				} else {
-					currentUpdateChunks[chunkId] = false;
-				}
+		chunkIds.forEach(function (chunkId) {
+			if (
+				typeof $loadUpdateChunk$ === "function" &&
 				$hasOwnProperty$($installedChunks$, chunkId) &&
 				$installedChunks$[chunkId] !== undefined
 			) {
@@ -470,17 +467,14 @@ module.exports = function () {
 		});
 		if ($ensureChunkHandlers$) {
 			$ensureChunkHandlers$.$key$Hmr = function (chunkId, promises) {
-					if (typeof $loadUpdateChunk$ === "function") {
-						promises.push($loadUpdateChunk$(chunkId));
-						currentUpdateChunks[chunkId] = true;
-					}
+			$ensureChunkHandlers$.$key$Hmr = function (chunkId, promises) {
+				if (
+					typeof $loadUpdateChunk$ === "function" &&
 					$hasOwnProperty$(currentUpdateChunks, chunkId) &&
 					!currentUpdateChunks[chunkId]
 				) {
-					if (typeof $loadUpdateChunk$ === "function") {
-						promises.push($loadUpdateChunk$(chunkId));
-						currentUpdateChunks[chunkId] = true;
-					}
+					promises.push($loadUpdateChunk$(chunkId));
+					currentUpdateChunks[chunkId] = true;
 				}
 			};
 		}
