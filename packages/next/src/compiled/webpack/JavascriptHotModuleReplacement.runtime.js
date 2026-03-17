@@ -283,7 +283,6 @@ module.exports = function () {
 					}
 				}
 
-					if (Object.prototype.hasOwnProperty.call(outdatedDependencies, outdatedModuleId)) {
 				var dependency;
 				for (var outdatedModuleId in outdatedDependencies) {
 					if ($hasOwnProperty$(outdatedDependencies, outdatedModuleId)) {
