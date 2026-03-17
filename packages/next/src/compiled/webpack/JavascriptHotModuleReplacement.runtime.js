@@ -14,24 +14,7 @@ var $ensureChunkHandlers$ = undefined;
 var $hasOwnProperty$ = Object.prototype.hasOwnProperty.call.bind(
 	Object.prototype.hasOwnProperty
 );
-	return Object.prototype.hasOwnProperty.call(obj, prop);
-};
-	return Object.prototype.hasOwnProperty.call(obj, prop);
-};
-	return Object.prototype.hasOwnProperty.call(obj, prop);
-};
-	return Object.prototype.hasOwnProperty.call(obj, prop);
-};
-	Object.prototype.hasOwnProperty.call.bind(
-		Object.prototype.hasOwnProperty
-	);
 var $hmrModuleData$ = undefined;
-	// Ensure $hasOwnProperty$ is a callable function before use
-	if (!$hasOwnProperty$) {
-		$hasOwnProperty$ = function (obj, prop) {
-			return Object.prototype.hasOwnProperty.call(obj, prop);
-		};
-	}
 var $hmrDownloadUpdateHandlers$ = undefined;
 var $hmrInvalidateModuleHandlers$ = undefined;
 var __webpack_require__ = undefined;
@@ -188,7 +171,7 @@ module.exports = function () {
 						doDispose = true;
 						break;
 					default:
-						throw new Error("Unexception type " + result.type);
+						throw new Error("Unexpected type " + result.type);
 				}
 				if (abortError) {
 					return {
@@ -283,7 +266,6 @@ module.exports = function () {
 					}
 				}
 
-					if (Object.prototype.hasOwnProperty.call(outdatedDependencies, outdatedModuleId)) {
 				var dependency;
 				for (var outdatedModuleId in outdatedDependencies) {
 					if ($hasOwnProperty$(outdatedDependencies, outdatedModuleId)) {
@@ -453,12 +435,9 @@ module.exports = function () {
 			return obj;
 		}, {});
 		currentUpdateRuntime = [];
-				if (typeof $loadUpdateChunk$ === "function") {
-					promises.push($loadUpdateChunk$(chunkId, updatedModulesList));
-					currentUpdateChunks[chunkId] = true;
-				} else {
-					currentUpdateChunks[chunkId] = false;
-				}
+		chunkIds.forEach(function (chunkId) {
+			if (
+				typeof $loadUpdateChunk$ === "function" &&
 				$hasOwnProperty$($installedChunks$, chunkId) &&
 				$installedChunks$[chunkId] !== undefined
 			) {
@@ -470,17 +449,14 @@ module.exports = function () {
 		});
 		if ($ensureChunkHandlers$) {
 			$ensureChunkHandlers$.$key$Hmr = function (chunkId, promises) {
-					if (typeof $loadUpdateChunk$ === "function") {
-						promises.push($loadUpdateChunk$(chunkId));
-						currentUpdateChunks[chunkId] = true;
-					}
+			$ensureChunkHandlers$.$key$Hmr = function (chunkId, promises) {
+				if (
+					typeof $loadUpdateChunk$ === "function" &&
 					$hasOwnProperty$(currentUpdateChunks, chunkId) &&
 					!currentUpdateChunks[chunkId]
 				) {
-					if (typeof $loadUpdateChunk$ === "function") {
-						promises.push($loadUpdateChunk$(chunkId));
-						currentUpdateChunks[chunkId] = true;
-					}
+					promises.push($loadUpdateChunk$(chunkId));
+					currentUpdateChunks[chunkId] = true;
 				}
 			};
 		}
