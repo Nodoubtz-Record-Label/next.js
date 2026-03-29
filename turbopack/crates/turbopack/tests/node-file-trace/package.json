@@ -41,7 +41,7 @@
     "copy": "^0.3.2",
     "core-js": "2",
     "cowsay": "^1.4.0",
-    "debug": "^4.3.4",
+    "debug": "^4.3.5",
     "es-get-iterator": "^1.1.0",
     "esbuild": "^0.15.7",
     "esm": "^3.2.25",
