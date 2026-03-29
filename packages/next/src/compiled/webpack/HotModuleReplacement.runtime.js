@@ -10,7 +10,7 @@ var $interceptModuleExecution$ = undefined;
 var $moduleCache$ = undefined;
 // eslint-disable-next-line no-unused-vars
 var $hmrModuleData$ = undefined;
-/** @type {() => Promise}  */
+/** @type {() => Promise<any>}  */
 var $hmrDownloadManifest$ = undefined;
 var $hmrDownloadUpdateHandlers$ = undefined;
 var $hmrInvalidateModuleHandlers$ = undefined;
@@ -18,7 +18,7 @@ var __webpack_require__ = undefined;
 
 module.exports = function () {
 	var currentModuleData = {};
-	var installedModules = $moduleCache$;
+	var installedModules = $moduleCache$ || {};
 
 	// module and require creation
 	var currentChildModule;
@@ -52,10 +52,10 @@ module.exports = function () {
 	$hmrInvalidateModuleHandlers$ = {};
 
 	function createRequire(require, moduleId) {
-		var me = installedModules[moduleId];
-		if (!me) return require;
+		var currentModule = installedModules[moduleId];
+		if (!currentModule) return require;
 		var fn = function (request) {
-			if (me.hot.active) {
+			if (currentModule.hot.active) {
 				if (installedModules[request]) {
 					var parents = installedModules[request].parents;
 					if (parents.indexOf(moduleId) === -1) {
@@ -65,8 +65,8 @@ module.exports = function () {
 					currentParents = [moduleId];
 					currentChildModule = request;
 				}
-				if (me.children.indexOf(request) === -1) {
-					me.children.push(request);
+				if (currentModule.children.indexOf(request) === -1) {
+					currentModule.children.push(request);
 				}
 			} else {
 				console.warn(
@@ -102,7 +102,7 @@ module.exports = function () {
 		return fn;
 	}
 
-	function createModuleHotObject(moduleId, me) {
+	function createModuleHotObject(moduleId, moduleInstance) {
 		var _main = currentChildModule !== moduleId;
 		var hot = {
 			// private stuff
@@ -115,7 +115,7 @@ module.exports = function () {
 			_disposeHandlers: [],
 			_main: _main,
 			_requireSelf: function () {
-				currentParents = me.parents.slice();
+				currentParents = moduleInstance.parents.slice();
 				currentChildModule = _main ? undefined : moduleId;
 				if (typeof __webpack_require__ === "function") {
 					__webpack_require__(moduleId);
@@ -197,15 +197,15 @@ module.exports = function () {
 			// Management API
 			check: hotCheck,
 			apply: hotApply,
-			status: function (l) {
-				if (!l) return currentStatus;
-				registeredStatusHandlers.push(l);
+			status: function (listener) {
+				if (!listener) return currentStatus;
+				registeredStatusHandlers.push(listener);
 			},
-			addStatusHandler: function (l) {
-				registeredStatusHandlers.push(l);
+			addStatusHandler: function (listener) {
+				registeredStatusHandlers.push(listener);
 			},
-			removeStatusHandler: function (l) {
-				var idx = registeredStatusHandlers.indexOf(l);
+			removeStatusHandler: function (listener) {
+				var idx = registeredStatusHandlers.indexOf(listener);
 				if (idx >= 0) registeredStatusHandlers.splice(idx, 1);
 			},
 
