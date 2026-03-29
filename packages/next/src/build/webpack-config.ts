@@ -138,7 +138,7 @@ const baseWatchOptions: webpack.Configuration['watchOptions'] = Object.freeze({
   aggregateTimeout: 5,
   ignored:
     // Matches **/node_modules/**, **/.git/** and **/.next/**
-    /^((?:[^/]*(?:\/|$))*)(\.(git|next)|node_modules)(\/((?:[^/]*(?:\/|$))*)(?:$|\/))?/,
+    /^((?:[^/]*\/)*)(\.(git|next)|node_modules)(\/((?:[^/]*\/)*)(?:$|\/))?/,
 })
 
 function isModuleCSS(module: { type: string }) {
