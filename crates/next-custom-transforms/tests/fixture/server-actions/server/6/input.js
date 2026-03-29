@@ -1,8 +1,8 @@
 import f, { f1, f2 } from 'foo'
 
 const f3 = 1
-var f4
-let f5
+var f4 = null
+let f5 = null
 
 const [
   f6,
@@ -66,8 +66,6 @@ export function y(p, [p1, { p2 }], ...p3) {
       p1,
       p2,
       p3,
-      g19,
-      g20,
       globalThis
     )
   }
